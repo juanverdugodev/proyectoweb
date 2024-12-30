@@ -10,8 +10,8 @@ import re
 # Para encriptar contraseña generate_password_hash
 from werkzeug.security import generate_password_hash
 
-
-def recibeInsertRegisterUser(cedula, name, surname, id_area, id_rol, pass_user):
+# INSERTAR USUARIOS CONEXIÓN CON BD
+def recibeInsertRegisterUser(cedula, name, surname, id_genero, id_area, id_rol, pass_user):
     respuestaValidar = validarDataRegisterLogin(
         cedula, name, surname, pass_user)
 
@@ -21,10 +21,10 @@ def recibeInsertRegisterUser(cedula, name, surname, id_area, id_rol, pass_user):
             with connectionBD() as conexion_MySQLdb:
                 with conexion_MySQLdb.cursor(dictionary=True) as mycursor:
                     sql = """
-                    INSERT INTO usuarios(cedula, nombre_usuario, apellido_usuario, id_area, id_rol, password) 
-                    VALUES (%s, %s, %s, %s, %s, %s)
+                    INSERT INTO usuarios(cedula, nombre_usuario, apellido_usuario, id_genero, id_area, id_rol, password) 
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
                     """
-                    valores = (cedula, name, surname, id_area, id_rol, nueva_password)
+                    valores = (cedula, name, surname, id_genero, id_area, id_rol, nueva_password)
                     mycursor.execute(sql, valores)
                     conexion_MySQLdb.commit()
                     resultado_insert = mycursor.rowcount

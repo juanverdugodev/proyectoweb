@@ -34,7 +34,7 @@ def perfil(id):
 # Crear cuenta de usuario
 @app.route('/register-user', methods=['GET'])
 def cpanelRegisterUser():
-        return render_template(f'{PATH_URL_LOGIN}/auth_register.html',dataLogin = dataLoginSesion(),areas=lista_areasBD(), roles=lista_rolesBD())
+        return render_template(f'{PATH_URL_LOGIN}/auth_register.html',dataLogin = dataLoginSesion(), generos=lista_generoBD(), areas=lista_areasBD(), roles=lista_rolesBD())
 
 
 # Recuperar cuenta de usuario
@@ -53,12 +53,14 @@ def cpanelRegisterUserBD():
         cedula = request.form['cedula']
         name = request.form['name']
         surname = request.form['surname']
+        id_genero = request.form['selectgenero']
         id_area = request.form['selectArea']
         id_rol = request.form['selectRol']
         pass_user = request.form['pass_user']
 
+
         resultData = recibeInsertRegisterUser(
-            cedula, name, surname, id_area,id_rol,pass_user)
+            cedula, name, surname, id_genero, id_area,id_rol,pass_user)
         if (resultData != 0):
             flash('la cuenta fue creada correctamente.', 'success')
             return redirect(url_for('inicio'))

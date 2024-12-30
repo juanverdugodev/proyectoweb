@@ -229,7 +229,30 @@ def guardarClaveAuditoria(clave_audi,id):
         
     except Exception as e:
         return f'Se produjo un error en crear Clave: {str(e)}'
-    
+
+# BUSCAR GENERO
+def lista_generoBD():
+    try:
+        with connectionBD() as conexion_MYSQLdb:
+            with conexion_MYSQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "SELECT * FROM genero"
+                cursor.execute(querySQL)
+                generos = cursor.fetchall()
+                
+            # Añadir los emojis al tipo_genero
+                for genero in generos:
+                    if genero['tipo_genero'].lower() == 'masculino':
+                        genero['tipo_genero'] += ' ♂️'
+                    elif genero['tipo_genero'].lower() == 'femenino':
+                        genero['tipo_genero'] += ' ♀️'
+            
+                return generos
+    except Exception as e:
+        print(f"Error en select genero : {e}")
+        return []
+#---------------------------------------------------
+
+# BUSCAR ROLES
 def lista_rolesBD():
     try:
         with connectionBD() as conexion_MYSQLdb:
