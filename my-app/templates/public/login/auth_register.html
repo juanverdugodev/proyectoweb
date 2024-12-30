@@ -63,23 +63,24 @@
                 <label for="genero" class="form-label">
                   genero
                 </label>
-                <select class="form-select" name="selectgenero">
-                  <option value="" disabled selected hidden>--Seleccione--</option>
+                <select class="form-select" name="selectGenero">
+                  <option value="" disabled selected hidden>-- Seleccionar --</option>
                   {% for genero in generos%}
                   <option value="{{genero.id_genero}}">{{genero.tipo_genero}}</option>
                   {%endfor%}
                 </select>
               </div>
+
               <div class="mb-3 col-md-6">
-                <label for="estado" class="form-label">
-                  estado
+                <label for="estado_civil" class="form-label">
+                  estado civil
                 </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="estado"
-                  required
-                  autofocus />
+                <select class="form-select" name="selectEstadoCivil">
+                  <option value="" disabled selected hidden>-- Seleccionar --</option>
+                  {% for estado in estado_civil%}
+                  <option value="{{estado.id_estado_civil}}">{{estado.registro_civil}}</option>
+                  {%endfor%}
+                </select>
               </div>
             </div>
 

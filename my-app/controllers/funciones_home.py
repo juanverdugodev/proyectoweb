@@ -238,17 +238,32 @@ def lista_generoBD():
                 querySQL = "SELECT * FROM genero"
                 cursor.execute(querySQL)
                 generos = cursor.fetchall()
-                
+
             # Añadir los emojis al tipo_genero
                 for genero in generos:
                     if genero['tipo_genero'].lower() == 'masculino':
                         genero['tipo_genero'] += ' ♂️'
                     elif genero['tipo_genero'].lower() == 'femenino':
                         genero['tipo_genero'] += ' ♀️'
-            
-                return generos
+            return generos
+        
     except Exception as e:
         print(f"Error en select genero : {e}")
+        return []
+#---------------------------------------------------
+
+# BUSCAR ESTADO
+def lista_Estado_CivilBD():
+    try:
+        with connectionBD() as conexion_MYSQLdb:
+            with conexion_MYSQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "SELECT * FROM estado_civil"
+                cursor.execute(querySQL)
+                estado_civil = cursor.fetchall()
+                
+                return estado_civil
+    except Exception as e:
+        print(f"Error en select estado_civil : {e}")
         return []
 #---------------------------------------------------
 
