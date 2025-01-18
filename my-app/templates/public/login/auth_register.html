@@ -28,6 +28,9 @@
                 type="text"
                 class="form-control"
                 name="cedula"
+                placeholder="Ingrese su cédula"
+                pattern="\d{10}"
+                title="La cédula debe contener exactamente 10 dígitos"
                 required
                 autofocus />
             </div>
@@ -61,7 +64,7 @@
             <div class="row">
               <div class="mb-3 col-md-6">
                 <label for="genero" class="form-label">
-                  genero
+                  Género
                 </label>
                 <select class="form-select" name="selectGenero">
                   <option value="" disabled selected hidden>-- Seleccionar --</option>
@@ -73,9 +76,9 @@
 
               <div class="mb-3 col-md-6">
                 <label for="estado_civil" class="form-label">
-                  estado civil
+                  Estado civil
                 </label>
-                <select class="form-select" name="selectEstadoCivil">
+                <select class="form-select" name="selectEstadoCivil" required >
                   <option value="" disabled selected hidden>-- Seleccionar --</option>
                   {% for estado in estado_civil%}
                   <option value="{{estado.id_estado_civil}}">{{estado.registro_civil}}</option>
@@ -92,6 +95,7 @@
                   <option value="{{area.id_area}}">{{area.nombre_area}}</option>
                   {%endfor%}
                 </select>
+                
               </div>
               <div class="mt-3 col-md-6" >
                 <label for="rol" class="form-label">Rol</label>

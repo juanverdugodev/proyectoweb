@@ -45,6 +45,37 @@
               value="{{ info_perfil_session[0]['apellido_usuario'] }}"
               />
           </div>
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label for="genero" class="form-label">
+                Género
+              </label>
+              <select class="form-select" name="selectGenero">
+                {% for genero in generos%}
+                {% if genero.id_genero == info_perfil_session[0]['id_genero']%}
+                <option value="{{genero.id_genero}}" selected> {{genero.tipo_genero}}</option>
+                {%else%}
+                <option value="{{genero.id_genero}}">{{genero.tipo_genero}}</option>
+                {%endif%}
+                {%endfor%}
+              </select>
+            </div>
+
+            <div class="mb-3 col-md-6">
+              <label for="estado_civil" class="form-label">
+                Estado civil
+              </label>
+              <select class="form-select" name="selectEstadoCivil">
+                {% for estado in estado_civil%}
+                {% if estado.id_estado_civil == info_perfil_session[0]['id_estado_civil']%}
+                <option value="{{estado.id_estado_civil}}" selected> {{estado.registro_civil}}</option>
+                {%else%}
+                <option value="{{estado.id_estado_civil}}">{{estado.registro_civil}}</option>
+                {%endif%}
+                {%endfor%}
+              </select>
+            </div>
+          </div>
           <div>
             <label for="area" class="form-label">Area</label>
             <select class="form-select" name="selectArea" {%if dataLogin.rol == 2 %} disabled {%endif%}>

@@ -128,14 +128,27 @@ def lista_usuariosBD():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT id_usuario, cedula, nombre_usuario, apellido_usuario, id_area, id_rol FROM usuarios"
+                querySQL = "SELECT id_usuario, cedula, nombre_usuario, apellido_usuario, id_area, id_rol, id_estado_civil FROM usuarios"
                 cursor.execute(querySQL,)
                 usuariosBD = cursor.fetchall()
         return usuariosBD
     except Exception as e:
         print(f"Error en lista_usuariosBD : {e}")
         return []
-
+    
+def lista_estados_civilesBD():
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "SELECT id_estado_civil, registro_civil FROM estado_civil"
+                cursor.execute(querySQL)
+                estados_civiles = cursor.fetchall()
+                print("Estados Civiles:", estados_civiles)  # Para verificar
+        return estados_civiles
+    except Exception as e:
+        print(f"Error en lista_estados_civiles: {e}")
+        return []
+    
 def lista_areasBD():
     try:
         with connectionBD() as conexion_MySQLdb:

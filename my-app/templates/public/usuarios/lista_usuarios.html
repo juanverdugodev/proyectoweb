@@ -25,6 +25,7 @@
             <th>Nombre</th>
             <th>Área</th>
             <th>Rol</th>
+            <th>Estado</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -46,6 +47,13 @@
               {{ rol.nombre_rol}}
               {%endif%}
               {%endfor%}
+            </td>
+            <td>
+              {% for estado in estados_civiles %}
+              {% if estado.id_estado_civil == usuario.id_estado_civil %}
+              {{ estado.registro_civil }}
+              {% endif %}
+              {% endfor %}
             </td>
             <td>
               <a

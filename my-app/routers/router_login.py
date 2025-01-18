@@ -26,7 +26,7 @@ def inicio():
 def perfil(id):
     if 'conectado' in session:
         
-        return render_template(f'public/perfil/perfil.html', info_perfil_session=info_perfil_session(id), dataLogin=dataLoginSesion(), areas=lista_areasBD(), roles=lista_rolesBD())
+        return render_template(f'public/perfil/perfil.html', info_perfil_session=info_perfil_session(id), dataLogin=dataLoginSesion(), generos=lista_generoBD(), estado_civil=lista_Estado_CivilBD(), areas=lista_areasBD(), roles=lista_rolesBD())
     else:
         return redirect(url_for('inicio'))
 
@@ -64,9 +64,9 @@ def cpanelRegisterUserBD():
             cedula, name, surname, id_genero, id_estado_civil, id_area,id_rol,pass_user)
         if (resultData != 0):
             flash('la cuenta fue creada correctamente.', 'success')
-            return redirect(url_for('inicio'))
+            return redirect(url_for('usuarios'))
         else:
-            return redirect(url_for('inicio'))
+            return redirect(url_for('usuarios'))
     else:
         flash('el método HTTP es incorrecto', 'error')
         return redirect(url_for('inicio'))
@@ -80,7 +80,7 @@ def actualizarPerfil(id):
             respuesta = procesar_update_perfil(request.form,id)
             if respuesta == 1:
                 flash('Los datos fuerón actualizados correctamente.', 'success')
-                return redirect(url_for('inicio'))
+                return redirect(url_for('usuarios'))
             elif respuesta == 0:
                 flash(
                     'La contraseña actual esta incorrecta, por favor verifique.', 'error')
